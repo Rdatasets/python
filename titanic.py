@@ -128,6 +128,7 @@ data = xarray.DataArray(
     coords=_coords[::-1], name='Number'
 )
 
+assert int(titanic.data.loc['Yes', 'Adult', 'Male', '3rd']) == 75
 
 # print(data)
 # print(data.loc['Yes', 'Adult', :, :])
