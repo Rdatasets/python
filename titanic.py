@@ -105,7 +105,7 @@ https://github.com/wch/r-source/blob/trunk/src/library/datasets/data/Titanic.R
 import numpy as np
 import xarray
 
-_name = 'Number'
+_name = 'Freq'
 data = np.array([  0,   0,  35,   0,
                    0,   0,  17,   0,
                  118, 154, 387, 670,
