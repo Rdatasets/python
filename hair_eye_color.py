@@ -105,18 +105,24 @@ https://github.com/wch/r-source/blob/trunk/src/library/datasets/data/HairEyeColo
 
 """
 
+import numpy as np
 import xarray
 
 
-data = xarray.DataArray([[[32, 53, 10,  3],
-                          [11, 50, 10, 30],
-                          [10, 25,  7,  5],
-                          [ 3, 15,  7,  8]],
-                         [[36, 66, 16,  4],
-                          [ 9, 34,  7, 64],
-                          [ 5, 29,  7,  5],
-                          [ 2, 14,  7,  8]]],
-                      name='Number', dims=['Sex', 'Hair', 'Eye'],
-                      coords=[['Male', 'Female'],
-                              ['Black', 'Brown', 'Red', 'Blond'], 
-                              ['Brown', 'Blue', 'Hazel', 'Green']])
+data = np.array([32, 53, 10, 3, 11, 50, 10, 30, 10, 25, 7, 5, 3, 15, 7, 8,
+                 36, 66, 16, 4,  9, 34,  7, 64,  5, 29, 7, 5, 2, 14, 7, 8])
+
+_dim = (4, 4, 2)
+data = data.reshape(_dim[::-1])
+
+_dims = ['Hair', 'Eye', 'Sex']
+_coords = [['Black', 'Brown', 'Red', 'Blond'], 
+           ['Brown', 'Blue', 'Hazel', 'Green'],
+           ['Male', 'Female']]
+
+data = xarray.DataArray(
+    data, dims=_dims[::-1],
+    coords=_coords[::-1], name='Number'
+)
+
+assert int(data.loc['Female', 'Green', 'Black']) == 2
