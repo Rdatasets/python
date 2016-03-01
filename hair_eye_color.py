@@ -109,6 +109,7 @@ import numpy as np
 import xarray
 
 
+_name = 'Number'
 data = np.array([32, 53, 10, 3, 11, 50, 10, 30, 10, 25, 7, 5, 3, 15, 7, 8,
                  36, 66, 16, 4,  9, 34,  7, 64,  5, 29, 7, 5, 2, 14, 7, 8])
 
@@ -122,7 +123,7 @@ _coords = [['Black', 'Brown', 'Red', 'Blond'],
 
 data = xarray.DataArray(
     data, dims=_dims[::-1],
-    coords=_coords[::-1], name='Number'
+    coords=_coords[::-1], name=_name
 )
 
 assert int(data.loc['Female', 'Green', 'Black']) == 2

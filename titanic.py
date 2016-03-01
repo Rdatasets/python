@@ -105,6 +105,7 @@ https://github.com/wch/r-source/blob/trunk/src/library/datasets/data/Titanic.R
 import numpy as np
 import xarray
 
+_name = 'Number'
 data = np.array([  0,   0,  35,   0,
                    0,   0,  17,   0,
                  118, 154, 387, 670,
@@ -125,10 +126,10 @@ _coords = [['1st', '2nd', '3rd', 'Crew'],
 
 data = xarray.DataArray(
     data, dims=_dims[::-1],
-    coords=_coords[::-1], name='Number'
+    coords=_coords[::-1], name=_name
 )
 
-assert int(titanic.data.loc['Yes', 'Adult', 'Male', '3rd']) == 75
+assert int(data.loc['Yes', 'Adult', 'Male', '3rd']) == 75
 
 # print(data)
 # print(data.loc['Yes', 'Adult', :, :])
